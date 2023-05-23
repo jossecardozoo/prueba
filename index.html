@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mi Proyecto Blippar</title>
+    <script src="webar-sdk/webar-sdk-v1.5.3.min.js"></script> 
+    <script>
+        Blippar.init({
+            apiKey: 'e4baf27f-4f24-4cf4-a2de-73adcac23b05'
+        });
+    </script>
+</head>
+<body>
+        <script>
+            Blippar.document()
+                .ready(function() {
+                    var cube = new Blippar.THREE.Mesh(
+                        new Blippar.THREE.BoxGeometry(1, 1, 1),
+                        new Blippar.THREE.MeshBasicMaterial({ color: 0xff0000 })
+                    );
+                    cube.position.set(0, 0, 0);
+                    Blippar.scene.add(cube);
+    
+                    Blippar.marker("marcador/quantik.png")
+                        .addEventListener('enter', function() {
+                            cube.visible = true;
+                        })
+                        .addEventListener('exit', function() {
+                            cube.visible = false;
+                        });
+                });
+        </script>
+</body>
+</html>
